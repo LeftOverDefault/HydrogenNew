@@ -5,10 +5,10 @@ from src.lexer.tokens import Token
 
 class Lexer:
     def __init__(self) -> None:
+        self.tokens = []
         self.start = 0
         self.line = 1
         self.col = 1
-        self.tokens = []
 
         self.token_pattern = re.compile(
             # r'\b\w+(?:_\w+)*\b|"[^"]*"|\d+(?:_\d+)*(?:\.\d+(?:_\d+)*)?|==|<=|>=|[\+\-\*/(){}=;:,\.]'
@@ -18,13 +18,14 @@ class Lexer:
     
     def tokenize(self, source: str) -> list:
         self.tokens = []  # Reset tokens list
+        self.start = 0    # Reset start position
         self.line = 1     # Reset line counter
         self.col = 1      # Reset column counter
 
         # Iterate over matches using finditer
         for match in self.token_pattern.finditer(source):
             value = match.group()
-            start = match.start()
+            start = match.start() - 1
 
             # Calculate line and column numbers
             self._update_position(source, start)

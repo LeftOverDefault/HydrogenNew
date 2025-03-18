@@ -7,7 +7,7 @@ class Token:
         self.col = col
 
     def __repr__(self):
-        return f"[{self.name}:{self.value}] ({self.line}:{self.col})"
+        return f"[{self.name}:{self.value}] ({self.start}) ({self.line}:{self.col})"
 
 
 # keyword
