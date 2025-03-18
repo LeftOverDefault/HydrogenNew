@@ -1,24 +1,20 @@
-from syntaxer import AST
-from lexer import Lexer
+from src.lexer import Lexer
+
+
+source_code = """
+let x: int = 42;
+const y: str = "Hello, World!";
+
+class MyClass {
+    mthd myMethod(param1, param2) {
+        let z: bool = true;
+        let pi: int = 3.141_592_654;
+    }
+}
+"""
 
 
 if __name__ == "__main__":
     lexer = Lexer()
-
-    source = ""
-
-    with open("./test.hy", "r") as source_object:
-        source = source_object.read()
-
-    lexer.add_source(source)
-
-    lexer.tokenize()
-    lexer.create_symbol_table()
-
-    # lexer.print_symbol_table()
-
-    ast = AST(lexer.tokens, lexer.symbol_table)
-
-    ast.build_ast()
-
-    print(ast.to_json())
+    for lexeme in lexer.tokenize(source_code):
+        print(lexeme)
