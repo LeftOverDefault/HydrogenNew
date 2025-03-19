@@ -7,7 +7,8 @@ class Token:
         self.col = col
 
     def __repr__(self):
-        return f"[{self.name}:{self.value}] ({self.start}) ({self.line}:{self.col})"
+        first = f"[ {self.name:20} : {self.value:20} ]" 
+        return f"{first:50} [ {self.line:4} : {self.col:4} ]"
 
 
 # keyword

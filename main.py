@@ -1,8 +1,7 @@
 from src.lexer import Lexer
 
 
-source_code = """
-let x: int = 42;
+source_code = """let x: int = 42;
 const y: str = "Hello, World!";
 
 class MyClass {
